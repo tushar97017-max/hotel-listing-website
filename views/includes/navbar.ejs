@@ -1,0 +1,118 @@
+<style>
+  .search-btn{
+    background-color: #fe424d;
+    color: white;
+     border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .search-btn:hover{
+    background-color: #fe424d;
+    color: white;
+
+  }
+  .search-btn i{
+    display: inline;
+    margin-right: 0.5rem;
+   
+  }
+  .search-input{
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+  }
+  .add-list{
+    color: #fe424d !important;
+    margin-right: 40px !important;
+  }
+  .add-list:hover{
+    background-color: #fe424d;
+    color: white !important;
+    border-radius: 25px;
+  }
+  .signup1{
+    margin-right: 30px !important;
+  }
+  .login1{
+    margin-right: 20px !important;
+  }
+  .signup1:hover{
+    color: white !important;
+    background-color: rgb(17, 12, 12);
+    border-radius: 25px;
+  }
+  .login1:hover{
+    color: white !important;
+    background-color: rgb(17, 12, 12);
+    border-radius: 25px;
+  }
+   .logout1:hover{
+    color: white !important;
+    background-color: rgb(17, 12, 12);
+    border-radius: 25px;
+  }
+  #themeToggle{
+    border-radius: 40px !important;
+    margin-right: 40px !important;
+    border: 1px solid black;
+  }
+  
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+       
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search" onsubmit="searchItem(event)">
+      <input class="form-control me-2 search-input" type="search" id="searchBox" placeholder="Search Destination"/>
+      <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+    </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link add-list" href="/listings/new">Add new Listing</a>
+        <!-- put inside your navbar -->
+<button id="themeToggle" class="btn btn-outline-dark ms-1" type="button">🌙</button>
+
+
+        <% if(!currUser){ %>
+        <a class="nav-link signup1" href="/signup"><b>Signup</b></a>
+        <a class="nav-link login1" href="/login"><b>Login</b></a>
+        <% } %>
+         <% if(currUser){ %>
+        <a class="nav-link logout1" href="/logout"><b>LogOut</b></a>
+        <% } %>
+   
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+function searchItem(event) {
+  event.preventDefault(); // stop reload
+
+  let query = document.getElementById("searchBox").value.toLowerCase();
+  let items = document.querySelectorAll(".searchItem");
+
+  items.forEach(item => {
+    let text = item.innerText.toLowerCase();
+
+    if (text.includes(query)) {
+      item.style.display = ""; // Let Bootstrap control layout
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+</script>
+
+
